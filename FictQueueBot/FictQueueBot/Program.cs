@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FictQueueBot.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using QueueBot.Services;
+using Telegram.Bot.Polling;
 
 var hostBuilder = Host.CreateDefaultBuilder(args);
 hostBuilder.ConfigureServices(
@@ -8,6 +9,7 @@ hostBuilder.ConfigureServices(
     {
         services.AddHostedService<BotService>();
         services.AddSingleton<HttpClient>();
+        services.AddSingleton<IUpdateHandler,UpdateHandler>();
     }
 );
 
